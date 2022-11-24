@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Getting it Done!</string>
+
+    <string name="view_login">Login</string>
+    <string name="view_main">Main</string>
+    <string name="view_list">List</string>
+    <string name="view_detail">Detail</string>
+
+    <string name="title_activity_login">LoginActivity</string>
+
+    <string name="back_button">Zurück</string>
+    <string name="to_main_button">Zur Eingabe</string>
+
+    <string name="login_label_name">Username</string>
+    <string name="login_label_password">Passwort</string>
+    <string name="login_label_signIn">Login</string>
+
+    <string name="task_title">Titel</string>
+    <string name="task_description">Beschreibung</string>
+    <string name="task_dueDate">Datum</string>
+    <string name="label_open_calendar">Fälligkeitsdatum: %s</string>
+    <string name="label_logout">Logout</string>
+    <string name="create_task_headline">Neue Aufgabe</string>
+    <string name="label_task_create">Aufgabe speichern</string>
+
+    <string name="navigation_label_main">Eingabe</string>
+    <string name="navigation_label_list">Übersicht</string>
+</resources>
