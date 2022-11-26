@@ -1,11 +1,7 @@
 package com.example.todolist.network
 
-import com.example.todolist.network.request.AddTaskRequest
-import com.example.todolist.network.request.FetchTasklistRequest
-import com.example.todolist.network.request.LoginRequest
-import com.example.todolist.network.response.AddTaskResponse
-import com.example.todolist.network.response.FetchTasklistResponse
-import com.example.todolist.network.response.LoginResponse
+import com.example.todolist.network.request.*
+import com.example.todolist.network.response.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -31,11 +27,31 @@ private val retrofit = Retrofit.Builder()
 
 interface TodolistApiService {
 
+    /*
+    User Requests
+     */
+
     @POST("login")
     fun login(@Body payload: LoginRequest): Call<LoginResponse>
 
+    @POST("addfriend")
+    fun addFriend(@Body payload: AddFriendRequest): Call<AddFriendResponse>
+
+    /*
+    Task Requests
+     */
+
     @POST("addtask")
-    fun addTask(@Body payload: AddTaskRequest): Call<AddTaskResponse>
+    fun addTask(@Body payload: AddTaskRequest): Call<FeedbackResponse>
+
+    @POST("updatetask")
+    fun updateTask(@Body payload: UpdateTaskRequest): Call<FeedbackResponse>
+
+    @POST("delegate")
+    fun delegateTask(@Body payload: DelegateTaskRequest): Call<FetchTasklistResponse>
+
+    @POST("task")
+    fun fetchTask(@Body payload: FetchTaskRequest): Call<FetchTaskResponse>
 
     @POST("tasks")
     fun fetchTasks(@Body payload: FetchTasklistRequest): Call<FetchTasklistResponse>

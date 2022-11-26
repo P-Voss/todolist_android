@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class FetchTasklistResponse(
+data class FetchTaskResponse(
     @SerializedName("success")
     val success: Boolean,
-    @SerializedName("tasks")
-    val tasks: List<Task>,
     @SerializedName("message")
-    val message: String
+    val message: String,
+    @SerializedName("task")
+    val task: Task
 )
