@@ -36,6 +36,7 @@ class TasklistViewModel: ViewModel() {
 
         viewModelScope.launch {
             try {
+                tasks = mutableListOf()
                 val payload = FetchTasklistRequest(
                     userId = userId,
                 )
