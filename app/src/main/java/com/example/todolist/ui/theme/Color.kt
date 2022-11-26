@@ -16,3 +16,7 @@ val SecondaryTextColor = Color(0xFFffffff)
 val Purple500 = Color(0xFF6200EE)
 val Purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0xFF03DAC5)
+
+val ErrorSurfaceColor = Color(0xFFff4d4d)
+val ErrorPrimaryColor = Color(0xFFe60000)
+val ErrorSecondaryColor = Color(0xFFff3333)

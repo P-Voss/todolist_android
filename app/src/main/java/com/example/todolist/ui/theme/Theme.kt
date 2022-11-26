@@ -20,19 +20,17 @@ private val DarkColorPalette = darkColors(
 )
 
 private val LightColorPalette = lightColors(
-//    primary = PrimaryColor,
-//    primaryVariant = PrimaryLightColor,
-//    secondary = SecondaryColor,
-//    secondaryVariant = SecondaryLightColor,
-//    surface = PrimaryDarkColor,
-//    onSurface = PrimaryTextColor,
-//    onPrimary = PrimaryTextColor,
-//    onSecondary = SecondaryTextColor,
-//    background = Color.LightGray
-
-
-    surface = SecondaryLightColor,
-    onSurface = SecondaryTextColor,
+    primary = PrimaryColor,
+    primaryVariant = PrimaryLightColor,
+    secondary = SecondaryColor,
+    secondaryVariant = SecondaryLightColor,
+    surface = PrimaryDarkColor,
+    onSurface = PrimaryTextColor,
+    onPrimary = PrimaryTextColor,
+    onSecondary = SecondaryTextColor,
+    background = Color.LightGray
+//    surface = SecondaryLightColor,
+//    onSurface = SecondaryTextColor,
 
     /* Other default colors to override
     background = Color.White,
@@ -44,6 +42,18 @@ private val LightColorPalette = lightColors(
     */
 )
 
+private val ErrorColorPalette = lightColors(
+    primary = ErrorPrimaryColor,
+    primaryVariant = PrimaryLightColor,
+    secondary = ErrorSecondaryColor,
+    secondaryVariant = SecondaryLightColor,
+    surface = ErrorSurfaceColor,
+    onSurface = PrimaryTextColor,
+    onPrimary = PrimaryTextColor,
+    onSecondary = SecondaryTextColor,
+    background = Color.LightGray
+)
+
 @Composable
 fun TodolistTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) {
@@ -53,8 +63,20 @@ fun TodolistTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composab
     }
 
     MaterialTheme(
-//        colors = colors,
+        colors = colors,
         typography = Typography,
+        shapes = Shapes,
+        content = content
+    )
+}
+
+@Composable
+fun ErrorTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+    val colors = ErrorColorPalette
+
+    MaterialTheme(
+        colors = colors,
+        typography = ErrorTypography,
         shapes = Shapes,
         content = content
     )
