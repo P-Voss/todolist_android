@@ -39,8 +39,6 @@ class MainActivity : ComponentActivity() {
         val createTaskViewModel: CreateTaskViewModel by viewModels()
         val tasklistViewModel: TasklistViewModel by viewModels()
 
-//        userViewModel.todolistApiService = TodolistApi().retrofitService
-
         Log.d(TAG, "isLoggedIn: " + userViewModel.isLoggedIn().toString())
         Log.d(TAG, "username: " + userViewModel.usernameInput)
 

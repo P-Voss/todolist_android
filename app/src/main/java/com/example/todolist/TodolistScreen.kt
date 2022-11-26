@@ -75,6 +75,18 @@ fun TodolistApp(
         startDestination = currentScreen.name,
         modifier = Modifier.fillMaxSize()
     ) {
+        composable(route = TodolistScreen.Login.name) {
+            LoginLayout(
+                topBar = { TopBarLogin() },
+                content = {
+                    LoginScreen(
+                        userViewModel = userViewModel,
+                        onLogin = {id: Int -> tasklistViewModel.refreshTasklist(id)}
+                    )
+                },
+                navBar = { BottomBarLayout() }
+            )
+        }
         composable(route = TodolistScreen.Main.name) {
             AppLayout(
                 topBar = {
@@ -116,18 +128,6 @@ fun TodolistApp(
                 navController = navController,
                 buttonLabel = R.string.navigation_label_main,
                 navigationTarget = TodolistScreen.Main
-            )
-        }
-        composable(route = TodolistScreen.Login.name) {
-            LoginLayout(
-                topBar = { TopBarLogin() },
-                content = {
-                    LoginScreen(
-                        userViewModel = userViewModel,
-                        onLogin = {id: Int -> tasklistViewModel.refreshTasklist(id)}
-                    )
-                },
-                navBar = { BottomBarLayout() }
             )
         }
     }

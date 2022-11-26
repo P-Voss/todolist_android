@@ -25,4 +25,5 @@
 
     <string name="navigation_label_main">Eingabe</string>
     <string name="navigation_label_list">Übersicht</string>
+    <string name="headline_todolist">Übersicht</string>
 </resources>
