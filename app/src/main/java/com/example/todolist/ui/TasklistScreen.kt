@@ -10,11 +10,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.example.todolist.Enums.Priority
 import com.example.todolist.R
@@ -25,7 +22,7 @@ import com.example.todolist.ui.viewModel.UserViewModel
 import java.util.Date
 
 @Composable
-fun ListScreen(
+fun TasklistScreen(
     userViewModel: UserViewModel,
     tasklistViewModel: TasklistViewModel
 )
@@ -33,7 +30,8 @@ fun ListScreen(
     Column (
         modifier = Modifier
             .padding(8.dp)
-            .fillMaxSize(),
+            .fillMaxWidth()
+            .fillMaxHeight(0.9f),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text (
@@ -51,7 +49,6 @@ fun ListScreen(
                     item: Task -> ListEntry(task = item)
             }
         }
-
     }
 }
 
@@ -96,10 +93,24 @@ fun TaskCard(
         Column(
             modifier = Modifier.padding(8.dp)
         ) {
-            Text(
-                text = task.title,
-                style = MaterialTheme.typography.h3
+
+            Row(
+                modifier = Modifier.fillMaxWidth()
             )
+            {
+                Text(
+                    text = task.title,
+                    style = MaterialTheme.typography.h3,
+                    modifier = Modifier.fillMaxWidth(0.7f)
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Text(
+                    text = stringResource(R.string.label_created_date, task.getFormattedCreationDate()),
+                    style = MaterialTheme.typography.body1
+                )
+            }
+
+            Spacer(modifier = Modifier.height(5.dp))
 
             Row(
                 modifier = Modifier.fillMaxWidth()
@@ -107,7 +118,8 @@ fun TaskCard(
             {
                 Text(
                     text = stringResource(R.string.label_open_calendar, task.getFormattedDueDate()),
-                    style = MaterialTheme.typography.body1
+                    style = MaterialTheme.typography.body1,
+                    modifier = Modifier.fillMaxWidth(0.7f)
                 )
 
                 Spacer(modifier = Modifier.weight(1f))
@@ -117,12 +129,14 @@ fun TaskCard(
                     style = MaterialTheme.typography.body1
                 )
             }
-            Spacer(modifier = Modifier.height(5.dp))
-            Text(
-                text = task.description,
-                style = MaterialTheme.typography.body1,
-                modifier = Modifier.fillMaxWidth()
-            )
+            if(task.description != "") {
+                Spacer(modifier = Modifier.height(5.dp))
+                Text(
+                    text = task.description,
+                    style = MaterialTheme.typography.body1,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
         }
     }
 }

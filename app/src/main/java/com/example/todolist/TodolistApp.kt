@@ -2,29 +2,18 @@ package com.example.todolist
 
 import android.util.Log
 import androidx.annotation.StringRes
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Create
-import androidx.compose.material.icons.filled.List
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.todolist.ui.ListScreen
-import com.example.todolist.ui.LoginScreen
-import com.example.todolist.ui.MainScreen
+import com.example.todolist.ui.*
 import com.example.todolist.ui.layout.AppLayout
 import com.example.todolist.ui.layout.LoginLayout
 import com.example.todolist.ui.layout.components.BottomBarLayout
@@ -40,9 +29,11 @@ private const val TAG = "TodolistScreen"
 
 enum class TodolistScreen(@StringRes val title: Int) {
     Login(title = R.string.view_login),
+    SignUp(title = R.string.view_signup),
     Main(title = R.string.view_main),
     List(title = R.string.view_list),
     Detail(title = R.string.view_detail),
+    Friendlist(title = R.string.view_detail),
 }
 
 
@@ -59,15 +50,21 @@ fun TodolistApp(
 
     Log.d(TAG, "isLoggedIn: " + userState.loginState.toString())
 
+    val backStackEntry by navController.currentBackStackEntryAsState()
     // Get the name of the current screen
     val currentScreen = if (!userViewModel.isLoggedIn()) {
-         TodolistScreen.valueOf(TodolistScreen.Login.name)
+        if ((backStackEntry?.destination?.route ?: TodolistScreen.Login.name) == TodolistScreen.Login.name) {
+            TodolistScreen.valueOf(TodolistScreen.Login.name)
+        } else {
+            TodolistScreen.valueOf(TodolistScreen.SignUp.name)
+        }
     } else {
-        // Get current back stack entry
-        val backStackEntry by navController.currentBackStackEntryAsState()
-        TodolistScreen.valueOf(
-            backStackEntry?.destination?.route ?: TodolistScreen.Main.name
-        )
+        if (backStackEntry?.destination?.route == TodolistScreen.Login.name || backStackEntry?.destination?.route == TodolistScreen.SignUp.name) {
+            // Get current back stack entry
+            TodolistScreen.valueOf(TodolistScreen.Main.name)
+        } else {
+            TodolistScreen.valueOf(backStackEntry?.destination?.route ?: TodolistScreen.Main.name)
+        }
     }
 
     NavHost(
@@ -81,7 +78,24 @@ fun TodolistApp(
                 content = {
                     LoginScreen(
                         userViewModel = userViewModel,
-                        onLogin = {id: Int -> tasklistViewModel.refreshTasklist(id)}
+                        onLogin = {id: Int ->
+                            tasklistViewModel.refreshTasklist(id)
+//                            createTaskViewModel
+                        },
+                        onToSignInClick = {navController.navigate(TodolistScreen.SignUp.name)}
+                    )
+                },
+                navBar = { BottomBarLayout() }
+            )
+        }
+        composable(route = TodolistScreen.SignUp.name) {
+            LoginLayout(
+                topBar = { TopBarLogin() },
+                content = {
+                    SignupScreen(
+                        userViewModel = userViewModel,
+                        onSignup = {id: Int -> tasklistViewModel.refreshTasklist(id)},
+                        onToLoginClick = {navController.navigate(TodolistScreen.Login.name)}
                     )
                 },
                 navBar = { BottomBarLayout() }
@@ -91,10 +105,10 @@ fun TodolistApp(
             AppLayout(
                 topBar = {
                     TopBarLayout(
-                        userViewModel = userViewModel,
-                        currentScreen = currentScreen,
-                        canNavigateBack = false,
-                        navigateToMain = { navController.navigate(TodolistScreen.Main.name) }
+                        onLogout = {
+                            userViewModel.logout { navController.navigate(TodolistScreen.Login.name) }
+                        },
+                        onToFriendlist = { navController.navigate(TodolistScreen.Friendlist.name) }
                     )
                  },
                 content = {
@@ -114,16 +128,39 @@ fun TodolistApp(
             AppLayout(
                 topBar = {
                     TopBarLayout(
-                        userViewModel = userViewModel,
-                        currentScreen = currentScreen,
-                        canNavigateBack = false,
-                        navigateToMain = { navController.navigate(TodolistScreen.Main.name) }
+                        onLogout = {
+                            userViewModel.logout { navController.navigate(TodolistScreen.Login.name) }
+                        },
+                        onToFriendlist = { navController.navigate(TodolistScreen.Friendlist.name) }
                     )
                 },
-                content = { innerPadding: PaddingValues -> ListScreen(
-                    userViewModel = userViewModel,
-                    tasklistViewModel = tasklistViewModel
-                ) },
+                content = {
+                    TasklistScreen(
+                        userViewModel = userViewModel,
+                        tasklistViewModel = tasklistViewModel
+                    )
+                },
+                navBar = { BottomBarLayout() },
+                navController = navController,
+                buttonLabel = R.string.navigation_label_main,
+                navigationTarget = TodolistScreen.Main
+            )
+        }
+        composable(route = TodolistScreen.Friendlist.name) {
+            AppLayout(
+                topBar = {
+                    TopBarLayout(
+                        onLogout = {
+                            userViewModel.logout { navController.navigate(TodolistScreen.Login.name) }
+                        },
+                        onToFriendlist = { navController.navigate(TodolistScreen.Friendlist.name) }
+                    )
+                },
+                content = {
+                    FriendlistScreen(
+                        userViewModel = userViewModel
+                    )
+                },
                 navBar = { BottomBarLayout() },
                 navController = navController,
                 buttonLabel = R.string.navigation_label_main,
