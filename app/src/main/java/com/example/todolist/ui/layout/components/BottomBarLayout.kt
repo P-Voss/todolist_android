@@ -10,7 +10,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.todolist.R
 
 @Composable
 fun BottomBarLayout() {
@@ -22,14 +24,14 @@ fun BottomBarLayout() {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = "Von P.Voss",
+            text = stringResource(R.string.text_bottom_bar_left),
             color = MaterialTheme.colors.onPrimary
         )
 
         Spacer(modifier = Modifier.weight(1f))
 
         Text(
-            text = "für IWMB01",
+            text = stringResource(R.string.text_bottom_bar_right),
             color = MaterialTheme.colors.onPrimary
         )
     }
