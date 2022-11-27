@@ -34,6 +34,9 @@ interface TodolistApiService {
     @POST("login")
     fun login(@Body payload: LoginRequest): Call<LoginResponse>
 
+    @POST("register")
+    fun createAccount(@Body payload: CreateAccountRequest): Call<LoginResponse>
+
     @POST("addfriend")
     fun addFriend(@Body payload: AddFriendRequest): Call<AddFriendResponse>
 
