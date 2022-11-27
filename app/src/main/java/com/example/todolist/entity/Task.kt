@@ -27,4 +27,9 @@ data class Task(
         val dateFormat = SimpleDateFormat("dd.MM.yyyy")
         return dateFormat.format(dueDate)
     }
+
+    fun getFormattedCreationDate(): String {
+        val dateFormat = SimpleDateFormat("dd.MM.yyyy")
+        return dateFormat.format(creationDate)
+    }
 }

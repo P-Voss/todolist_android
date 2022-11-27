@@ -34,6 +34,10 @@ class CreateTaskViewModel : ViewModel() {
     private val _creationState = MutableStateFlow(CreationState.OPEN)
     val creationState: StateFlow<CreationState> = _creationState.asStateFlow()
 
+    var friendId by mutableStateOf(0)
+    var friendDisplay by mutableStateOf("Für mich")
+
+    var priorityInput by mutableStateOf(Priority.MEDIUM)
 
     var titleInput by mutableStateOf("")
         private set
@@ -52,9 +56,16 @@ class CreateTaskViewModel : ViewModel() {
         )
     }
 
+    fun updateFriend(userId: Int, display: String) {
+        friendId = userId
+        friendDisplay = display
+    }
+
+    fun updatePriority(priority: Priority) {
+        priorityInput = priority
+    }
+
     fun getFormattedDate(): String {
-//        val dateFormat = DateTimeFormatter.ofPattern("dd-MM-yyy")
-//        val dateFormat = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.SHORT)
         val dateFormat = SimpleDateFormat("dd.MM.yyyy")
         return dateFormat.format(dateInput)
     }
@@ -76,16 +87,19 @@ class CreateTaskViewModel : ViewModel() {
             return
         }
 
+        Log.d("CreateTaskViewModel", "FriendId: " + friendId.toString())
+        Log.d("CreateTaskViewModel", "UserId: " + user.userId.toString())
         viewModelScope.launch {
             try {
                 val dateFormat = SimpleDateFormat("dd.MM.yyyy")
                 val payload = AddTaskRequest(
                     userId = user.userId,
+                    friendId = friendId,
                     title = titleInput,
                     description = descriptionInput,
                     dueDate = dateFormat.format(dateInput),
                     creationDate = dateFormat.format(Date()),
-                    priority = Priority.LOW.name
+                    priority = priorityInput.name
                 )
 
                 Log.d("CreateTaskViewModel", "Attempting Request")
@@ -95,15 +109,18 @@ class CreateTaskViewModel : ViewModel() {
                 Log.d("CreateTaskViewModel", result.toString())
                 if (result.success) {
                     callback()
+
+                    titleInput = ""
+                    descriptionInput = ""
+                    dateInput = Date()
+                    priorityInput = Priority.MEDIUM
+                    friendId = 0
+                    friendDisplay = "Für mich"
                 }
             } catch (e: Exception) {
                 Log.d("CreateTaskViewModel", "Caught Exception: " + e.message)
             }
         }
-
-        titleInput = ""
-        descriptionInput = ""
-        dateInput = Date()
     }
 
 }
