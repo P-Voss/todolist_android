@@ -18,14 +18,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import retrofit2.await
-import kotlin.math.log
 
 private const val TAG = "UserViewModel"
 
 class UserViewModel() : ViewModel() {
-
-    private val _loginState = MutableStateFlow(LoginState.SIGNED_OFF)
-    private var loginState: StateFlow<LoginState> = _loginState.asStateFlow()
 
     private val _user = MutableStateFlow(User())
     val user: StateFlow<User> = _user.asStateFlow()
@@ -176,7 +172,7 @@ class UserViewModel() : ViewModel() {
         }
     }
 
-    fun logout(navigateToLogout: () -> Unit) {
+    fun logout(onLogout: () -> Unit) {
         _user.update { currentState ->
             currentState.copy(
                 userId = 0,
@@ -185,7 +181,7 @@ class UserViewModel() : ViewModel() {
                 loginState = LoginState.SIGNED_OFF
             )
         }
-        navigateToLogout()
+        onLogout()
     }
 
 }
