@@ -2,7 +2,6 @@ package com.example.todolist.entity
 
 import com.example.todolist.Enums.LoginState
 import com.google.gson.annotations.SerializedName
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
