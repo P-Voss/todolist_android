@@ -37,13 +37,6 @@ fun SignupScreen(
     )
     {
 
-//        Image(
-//            painter = painterResource(id = R.drawable.mainimage),
-//            contentDescription = "Get it Done!",
-//            modifier = Modifier.fillMaxWidth(),
-//            contentScale = ContentScale.Fit
-//        )
-
         Spacer(modifier = Modifier.height(8.dp))
 
         LoginTextField(
@@ -106,38 +99,3 @@ fun SignupScreen(
         }
     }
 }
-
-
-//@Composable
-//fun PasswordField(
-//    password: String,
-//    onInput: (String) -> Unit,
-//    onDone: () -> Unit
-//)
-//{
-//    OutlinedTextField(
-//        value = password,
-//        onValueChange = onInput,
-//        singleLine = true,
-//        label = {
-//            Text(text = stringResource(R.string.login_label_password))
-//        },
-//        isError = false,
-//        keyboardOptions = KeyboardOptions.Default.copy(
-//            imeAction = ImeAction.Done,
-//            keyboardType = KeyboardType.Password
-//        ),
-//        keyboardActions = KeyboardActions(
-//            onDone = { onDone() }
-//        ),
-//        visualTransformation = PasswordVisualTransformation()
-//    )
-//}
-
-//@Preview(showBackground = true)
-//@Composable
-//fun DefaultPreview2() {
-//    TodolistTheme {
-//        LoginScreen(onLogin = {})
-//    }
-//}

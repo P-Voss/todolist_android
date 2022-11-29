@@ -47,14 +47,8 @@ interface TodolistApiService {
     @POST("addtask")
     fun addTask(@Body payload: AddTaskRequest): Call<FeedbackResponse>
 
-    @POST("updatetask")
-    fun updateTask(@Body payload: UpdateTaskRequest): Call<FeedbackResponse>
-
-    @POST("delegate")
-    fun delegateTask(@Body payload: DelegateTaskRequest): Call<FetchTasklistResponse>
-
-    @POST("task")
-    fun fetchTask(@Body payload: FetchTaskRequest): Call<FetchTaskResponse>
+    @POST("removetask")
+    fun removeTask(@Body payload: RemoveTaskRequest): Call<FeedbackResponse>
 
     @POST("tasks")
     fun fetchTasks(@Body payload: FetchTasklistRequest): Call<FetchTasklistResponse>

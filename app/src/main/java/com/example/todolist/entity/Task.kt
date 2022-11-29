@@ -2,7 +2,6 @@ package com.example.todolist.entity
 
 import com.example.todolist.Enums.DelegatedState
 import com.example.todolist.Enums.Priority
-import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 import java.text.SimpleDateFormat
 import java.util.Date
