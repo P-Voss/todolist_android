@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.util.Log
 import android.widget.DatePicker
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -37,7 +38,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MainScreen(
     userViewModel: UserViewModel,
@@ -49,10 +49,18 @@ fun MainScreen(
     val focusManager = LocalFocusManager.current
 
     val currentContext = LocalContext.current
+    val toast = Toast.makeText(currentContext, stringResource(R.string.task_oncreate_toast), Toast.LENGTH_SHORT)
 
     val datePicker = getDatePicker(currentContext, createTaskViewModel)
     var expandFriendlist by remember { mutableStateOf(false) }
     var expandPriorities by remember { mutableStateOf(false) }
+
+    val submitTask = {
+        createTaskViewModel.saveTask(user){
+            tasklistViewModel.refreshTasklist(user.userId)
+            toast.show()
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -192,16 +200,14 @@ fun MainScreen(
                         imeAction = ImeAction.Done
                     ),
                     keyboardActions = KeyboardActions(
-                        onDone = { createTaskViewModel.saveTask(user){tasklistViewModel.refreshTasklist(user.userId)} }
+                        onDone = { submitTask() }
                     )
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
 
                 Button(
-                    onClick = {
-                        createTaskViewModel.saveTask(user){tasklistViewModel.refreshTasklist(user.userId)}
-                    }
+                    onClick = { submitTask() }
                 )
                 {
                     Text(text = stringResource(R.string.label_task_create))
@@ -230,10 +236,8 @@ fun getDatePicker(
     createTaskViewModel: CreateTaskViewModel
 ): DatePickerDialog
 {
-    // Initializing a Calendar
     val calendar = Calendar.getInstance()
 
-    // Fetching current year, month and day
     val currentYear = calendar.get(Calendar.YEAR)
     val currentMonth = calendar.get(Calendar.MONTH)
     val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
@@ -248,8 +252,6 @@ fun getDatePicker(
                 val formatter = SimpleDateFormat("dd/MM/yyyy")
                 val date = formatter.parse(dateString)
 
-                Log.d("DatePicker", "formatted Date: " + dateString)
-
                 createTaskViewModel.setDate(date)
             } catch (ex: ParseException) {
                 Log.d("MainScreen", "Could not parse datestring: " + dateString)
@@ -261,14 +263,4 @@ fun getDatePicker(
     )
 
     return mDatePickerDialog
-}
-
-@Preview
-@Composable
-fun displayPreview() {
-    MainScreen(
-        userViewModel = UserViewModel(),
-        createTaskViewModel = CreateTaskViewModel(),
-        tasklistViewModel = TasklistViewModel()
-    )
 }
