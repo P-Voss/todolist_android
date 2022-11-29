@@ -26,16 +26,21 @@
     <string name="task_dueDate">Datum</string>
     <string name="label_open_calendar">Fällig am: %s</string>
     <string name="label_created_date">Erstellt am: %s</string>
+    <string name="task_creation_details">Erstellt am %s von %s</string>
     <string name="label_logout">Logout</string>
     <string name="create_task_headline">Neue Aufgabe</string>
     <string name="label_task_create">Aufgabe speichern</string>
+    <string name="task_oncreate_toast">Aufgabe erstellt</string>
 
     <string name="navigation_label_main">Eingabe</string>
     <string name="navigation_label_list">Übersicht</string>
-    <string name="headline_todolist">Übersicht</string>
+    <string name="headline_todolist">Offene Aufgaben</string>
     <string name="headline_friendlist">Freundesliste</string>
 
     <string name="text_bottom_bar_left">Von Philipp Voß</string>
     <string name="text_bottom_bar_right">für IWMB01</string>
     <string name="friendlist_button_add">Freund Hinzufügen</string>
+    <string name="tasklist_delete_instructions">Zum Löschen nach Rechts swipen</string>
+    <string name="tasklist_expand_instructions">Klicken um Details anzuzeigen</string>
+    <string name="tasklist_ondelete_toast">Aufgabe gelöscht</string>
 </resources>
