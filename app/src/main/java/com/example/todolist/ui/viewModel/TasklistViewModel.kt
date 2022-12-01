@@ -6,12 +6,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.todolist.Enums.Priority
 import com.example.todolist.entity.Task
 import com.example.todolist.entity.User
 import com.example.todolist.network.TodolistApi
 import com.example.todolist.network.TodolistApiService
-import com.example.todolist.network.request.AddTaskRequest
 import com.example.todolist.network.request.FetchTasklistRequest
 import com.example.todolist.network.request.RemoveTaskRequest
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,8 +17,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import retrofit2.await
-import java.text.SimpleDateFormat
-import java.util.*
 
 private const val TAG = "TasklistViewModel"
 

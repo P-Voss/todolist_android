@@ -2,7 +2,6 @@ package com.example.todolist.network.response
 
 import com.example.todolist.entity.User
 import com.google.gson.annotations.SerializedName
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable

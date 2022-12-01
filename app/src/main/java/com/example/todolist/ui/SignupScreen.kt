@@ -1,6 +1,5 @@
 package com.example.todolist.ui
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.*
@@ -8,9 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -41,7 +38,7 @@ fun SignupScreen(
 
         LoginTextField(
             name = userViewModel.loginnameInput,
-            labelText = "Loginname",
+            labelText = stringResource(id = R.string.registry_label_email),
             onInput = { userViewModel.updateLoginname(it) },
             imeAction = ImeAction.Next,
             keyboardActions = KeyboardActions(
@@ -52,7 +49,7 @@ fun SignupScreen(
 
         LoginTextField(
             name = userViewModel.usernameInput,
-            labelText = "Username",
+            labelText = stringResource(id = R.string.registry_label_name),
             onInput = { userViewModel.updateUsername(it) },
             imeAction = ImeAction.Next,
             keyboardActions = KeyboardActions(
@@ -85,7 +82,7 @@ fun SignupScreen(
                 onClick = { userViewModel.attemptSignUp(onSignup) }
             )
             {
-                Text(text = stringResource(R.string.login_button_create))
+                Text(text = stringResource(R.string.registry_button_create))
             }
             Spacer(modifier = Modifier.weight(1f))
 
@@ -94,7 +91,7 @@ fun SignupScreen(
                 colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.secondary)
             )
             {
-                Text(text = stringResource(R.string.login_button_to_login))
+                Text(text = stringResource(R.string.navigation_label_login))
             }
         }
     }

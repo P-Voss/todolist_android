@@ -19,8 +19,6 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import retrofit2.await
 
-private const val TAG = "UserViewModel"
-
 class UserViewModel() : ViewModel() {
 
     private val _user = MutableStateFlow(User())
@@ -103,12 +101,12 @@ class UserViewModel() : ViewModel() {
     }
 
     fun attemptLogin(onLogin: (Int) -> Unit) {
-        if (usernameInput == "" || passwordInput == "") {
+        if (loginnameInput == "" || passwordInput == "") {
             return
         }
 
         val payload = LoginRequest(
-            email = usernameInput,
+            email = loginnameInput,
             password = passwordInput
         )
 

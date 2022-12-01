@@ -47,9 +47,9 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(8.dp))
 
         LoginTextField(
-            name = userViewModel.usernameInput,
+            name = userViewModel.loginnameInput,
             labelText = stringResource(id = R.string.login_label_name),
-            onInput = { userViewModel.updateUsername(it) },
+            onInput = { userViewModel.updateLoginname(it) },
             imeAction = ImeAction.Next,
             keyboardActions = KeyboardActions(
                 onNext = {focusManager.moveFocus(FocusDirection.Down)}
@@ -82,7 +82,7 @@ fun LoginScreen(
                 colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.secondary)
             )
             {
-                Text(text = stringResource(R.string.login_button_to_create))
+                Text(text = stringResource(R.string.navigation_label_registry))
             }
         }
 

@@ -80,7 +80,6 @@ fun TodolistApp(
                         userViewModel = userViewModel,
                         onLogin = {id: Int ->
                             tasklistViewModel.refreshTasklist(id)
-//                            createTaskViewModel
                         },
                         onToSignInClick = {navController.navigate(TodolistScreen.SignUp.name)}
                     )
@@ -167,18 +166,5 @@ fun TodolistApp(
                 navigationTarget = TodolistScreen.Main
             )
         }
-    }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    TodolistTheme {
-        TodolistApp(
-            userViewModel = UserViewModel(),
-            createTaskViewModel = CreateTaskViewModel(),
-            tasklistViewModel = TasklistViewModel()
-        )
     }
 }

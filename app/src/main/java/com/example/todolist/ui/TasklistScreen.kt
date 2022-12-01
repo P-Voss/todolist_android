@@ -28,7 +28,6 @@ import com.example.todolist.entity.Task
 import com.example.todolist.ui.theme.ErrorTheme
 import com.example.todolist.ui.viewModel.TasklistViewModel
 import com.example.todolist.ui.viewModel.UserViewModel
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import java.util.Date
 import kotlin.math.roundToInt

@@ -8,7 +8,6 @@ import java.util.Date
 
 @Serializable
 data class Task(
-
     val id: Int? = null,
     var title: String = "",
     var description: String = "",

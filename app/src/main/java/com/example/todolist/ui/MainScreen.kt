@@ -21,7 +21,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.material.Icon
 import androidx.compose.ui.focus.FocusDirection
@@ -228,6 +227,7 @@ fun priorityName(priority: Priority): String {
 }
 
 /**
+ * DatePicker angepasst aus:
  * https://www.geeksforgeeks.org/date-picker-in-android-using-jetpack-compose/
  */
 @SuppressLint("SimpleDateFormat")
@@ -244,7 +244,7 @@ fun getDatePicker(
 
     calendar.time = Date()
 
-    val mDatePickerDialog = DatePickerDialog(
+    val datePickerDialog = DatePickerDialog(
         context,
         { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
             val dateString = "$mDayOfMonth/${mMonth+1}/$mYear"
@@ -262,5 +262,5 @@ fun getDatePicker(
         currentDay
     )
 
-    return mDatePickerDialog
+    return datePickerDialog
 }

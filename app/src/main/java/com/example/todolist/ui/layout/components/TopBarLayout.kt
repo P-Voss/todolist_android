@@ -26,15 +26,10 @@ fun TopBarLayout(
                 verticalAlignment = Alignment.CenterVertically
             )
             {
-//                Image(
-//                    painter = painterResource(id = R.drawable.mainicon),
-//                    contentDescription = "",
-//                    contentScale = ContentScale.Fit
-//                )
                 Button(onClick = { onToFriendlist() }) {
                     Row {
-                        Icon(Icons.Filled.Add, contentDescription = "Add")
-                        Icon(Icons.Filled.Face, "A Friend")
+                        Icon(Icons.Filled.Add, contentDescription = "")
+                        Icon(Icons.Filled.Face, contentDescription = "")
                     }
                 }
 
