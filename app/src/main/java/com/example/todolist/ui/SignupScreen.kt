@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.todolist.R
 import com.example.todolist.ui.layout.components.LoginTextField
+import com.example.todolist.ui.layout.components.PasswordConfirmField
 import com.example.todolist.ui.layout.components.PasswordField
 import com.example.todolist.ui.viewModel.UserViewModel
 
@@ -38,7 +39,7 @@ fun SignupScreen(
 
         LoginTextField(
             name = userViewModel.loginnameInput,
-            labelText = stringResource(id = R.string.registry_label_email),
+            labelText = stringResource(id = R.string.registry_label_loginname),
             onInput = { userViewModel.updateLoginname(it) },
             imeAction = ImeAction.Next,
             keyboardActions = KeyboardActions(
@@ -67,13 +68,11 @@ fun SignupScreen(
             imeAction = ImeAction.Next
         )
         Spacer(modifier = Modifier.height(8.dp))
-        PasswordField(
+        PasswordConfirmField(
             password = userViewModel.passwordConfirmInput,
             labelText = stringResource(R.string.login_label_password_confirm),
             onInput = { userViewModel.updatePasswordConfirm(it) },
-            onDone =  { userViewModel.attemptSignUp(onSignup) },
-            onNext = {},
-            imeAction = ImeAction.Done
+            onDone =  { userViewModel.attemptSignUp(onSignup) }
         )
         Spacer(modifier = Modifier.height(8.dp))
 

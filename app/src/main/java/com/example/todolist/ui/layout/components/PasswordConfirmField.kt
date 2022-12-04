@@ -11,15 +11,17 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 
-
+/**
+ * Workaround, Bug in Jetpack Compose?
+ * Übernimmt ImeAction von erstem Passwortfeld, Klick-Reihenfolge entscheidet
+ * welcher Button angezeigt wird.
+ */
 @Composable
-fun PasswordField(
+fun PasswordConfirmField(
     password: String,
     onInput: (String) -> Unit,
     onDone: () -> Unit,
-    onNext: () -> Unit,
-    labelText: String,
-    imeAction: ImeAction = ImeAction.Next
+    labelText: String
 )
 {
     OutlinedTextField(
@@ -31,12 +33,11 @@ fun PasswordField(
         },
         isError = false,
         keyboardOptions = KeyboardOptions.Default.copy(
-            imeAction = imeAction,
+            imeAction = ImeAction.Done,
             keyboardType = KeyboardType.Password
         ),
         keyboardActions = KeyboardActions(
-            onDone = { onDone() },
-            onNext = { onNext() }
+            onDone = { onDone() }
         ),
         visualTransformation = PasswordVisualTransformation(),
         modifier = Modifier.fillMaxWidth()
