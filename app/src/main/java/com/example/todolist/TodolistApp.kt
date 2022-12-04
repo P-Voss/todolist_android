@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -19,7 +18,6 @@ import com.example.todolist.ui.layout.LoginLayout
 import com.example.todolist.ui.layout.components.BottomBarLayout
 import com.example.todolist.ui.layout.components.TopBarLayout
 import com.example.todolist.ui.layout.components.TopBarLogin
-import com.example.todolist.ui.theme.TodolistTheme
 import com.example.todolist.ui.viewModel.CreateTaskViewModel
 import com.example.todolist.ui.viewModel.TasklistViewModel
 import com.example.todolist.ui.viewModel.UserViewModel
@@ -32,8 +30,7 @@ enum class TodolistScreen(@StringRes val title: Int) {
     SignUp(title = R.string.view_signup),
     Main(title = R.string.view_main),
     List(title = R.string.view_list),
-    Detail(title = R.string.view_detail),
-    Friendlist(title = R.string.view_detail),
+    Friendlist(title = R.string.view_friendlist),
 }
 
 

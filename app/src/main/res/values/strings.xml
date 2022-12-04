@@ -8,15 +8,16 @@
     <string name="view_main">Main</string>
     <string name="view_list">List</string>
     <string name="view_detail">Detail</string>
+    <string name="view_friendlist">Friendlist</string>
 
-    <string name="login_label_name">Username</string>
+    <string name="login_label_name">E-Mail</string>
     <string name="login_label_password">Passwort</string>
     <string name="login_label_password_confirm">Passwort bestätigen</string>
     <string name="login_label_signIn">Login</string>
     <string name="login_button_login">Login</string>
     <string name="registry_button_create">Registrieren</string>
     <string name="registry_label_name">Username (Anzeigename für andere User)</string>
-    <string name="registry_label_email">E-Mail</string>
+    <string name="registry_label_loginname">E-Mail</string>
 
     <string name="task_title">Titel</string>
     <string name="task_description">Beschreibung</string>
@@ -41,4 +42,5 @@
     <string name="tasklist_delete_instructions">Zum Löschen nach Rechts swipen</string>
     <string name="tasklist_expand_instructions">Klicken um Details anzuzeigen</string>
     <string name="tasklist_ondelete_toast">Aufgabe gelöscht</string>
+    <string name="friendlist_label_usercode">Usercode</string>
 </resources>
